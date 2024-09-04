@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import { Box } from '@mui/material';
 import {
   IAnalysisData, IFunction,
 } from '../utils/interfaces';
 
-
+/* eslint-disable */
 interface CirclePackingGraphProps {
   data: IAnalysisData;
-  onNodeClick: (node: d3.HierarchyCircularNode<IHierarchyNode>) => void;
 }
 interface IHierarchyNode {
   name: string;
@@ -19,7 +17,6 @@ interface IHierarchyNode {
 
 export default function CirclePackingGraph({
   data,
-  onNodeClick,
 }: CirclePackingGraphProps) {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -85,7 +82,7 @@ export default function CirclePackingGraph({
       .attr('height', height)
       .attr(
         'style',
-        `max-width: 100%; height: auto; display: block; margin: 0 -14px; background: ${color(
+        `max-width: 100%; height: auto; display: block; margin: 0; background: ${color(
           0,
         )}; cursor: pointer;`,
       );
@@ -125,7 +122,6 @@ export default function CirclePackingGraph({
 
     const zoomTo = (v: [number, number, number]) => {
       const k = width / v[2];
-
       view = v;
 
       label.attr(
@@ -149,8 +145,8 @@ export default function CirclePackingGraph({
         .transition()
         .duration(duration)
         .tween('zoom', () => {
-          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
-          return (t) => zoomTo(i(t));
+          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 3.5]);
+          return (t:number) => zoomTo(i(t));
         });
 
 
@@ -173,20 +169,18 @@ export default function CirclePackingGraph({
     zoomTo([root.x, root.y, root.r * 2]);
 
     svg.on('click', (event) => zoom(event, root));
-  }, [hierarchicalData, onNodeClick]);
+  }, [hierarchicalData]);
 
   return (
-    <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
-      <svg
-        ref={svgRef}
-        style={{
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
-      />
-    </Box>
+    <svg
+      ref={svgRef}
+      style={{
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      }}
+    />
   );
 }
 

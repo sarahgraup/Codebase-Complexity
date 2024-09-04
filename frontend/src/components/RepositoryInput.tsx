@@ -15,7 +15,6 @@ onClose: () => void,
     confirmDisable:boolean,
 }
 
-
 export default function RepositoryInput({
   isOpen, onClose, onConfirm, confirmDisable,
 }:TInputProps) {
@@ -29,7 +28,6 @@ export default function RepositoryInput({
       [name]: value,
     }));
   };
-
 
   return (
     <Grid>

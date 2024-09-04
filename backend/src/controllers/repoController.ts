@@ -15,13 +15,8 @@ export const trackRepository = async (req: Request, res: Response, next: NextFun
     });
     const { statusEndpoint } = response.data;
 
-    console.log('status endpoint', statusEndpoint);
-
     const getResponse = await apiClient.get(statusEndpoint);
-    console.log('repo info', getResponse.data);
     res.json(getResponse.data);
-
-    // res.json(response.data);
   } catch (error) {
     next(error);
   }
@@ -29,14 +24,12 @@ export const trackRepository = async (req: Request, res: Response, next: NextFun
 
 export const getRepoInfo = async (req: Request, res: Response, next: NextFunction) => {
   const { repositoryId } = req.params;
-  console.log('repository id', repositoryId);
   if (!repositoryId) {
     console.error('Repository ID is undefined');
     return;
   }
   try {
     const response = await apiClient.get(details.repo(repositoryId));
-    console.log(response);
     res.json(response.data);
   } catch (err) {
     console.error('error', err);
@@ -52,14 +45,12 @@ export const analyzeRepository = async (req: Request, res: Response, next: NextF
     return next(new BadRequestError('Invalid analysis type'));
   }
   const analysisMessage = getAnalysisMessage(analysisType);
-  console.log('mesasge', analysisMessage, 'repo', repository);
 
   try {
     const response = await apiClient.post(queryApi, {
       messages: [analysisMessage],
       repositories: [repository],
     });
-    console.log('repsonse', response);
     res.json(response.data);
   } catch (error) {
     console.error('there is error');

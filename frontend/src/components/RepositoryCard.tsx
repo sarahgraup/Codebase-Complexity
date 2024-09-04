@@ -86,14 +86,11 @@ export default function RepositoryCard({
         </SpinnerButton>
       </CardActions>
       {repoAnalysis && (
-      <Box sx={{ flexGrow: 1, minHeight: 0 }}>
         <AnalysisDetails
           repoAnalysis={repoAnalysis}
           expanded={expanded}
           onToggle={() => setExpanded(!expanded)}
         />
-      </Box>
-
       )}
     </Card>
   );

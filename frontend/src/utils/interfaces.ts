@@ -1,7 +1,7 @@
 export interface IRepoInput {
-  remote:string;
-  repository:string;
-  branch:string;
+  remote: string;
+  repository: string;
+  branch: string;
 }
 
 export interface IRepositoryInfo {
@@ -16,27 +16,6 @@ export interface IRepositoryInfo {
   analysis?: IRepoAnalysis;
 }
 
-/**
- repository:sarahgraup/sudokusolver
-Remote: github
-
-Branch: main
-private:false
-
-Status: completed
-sha:d
-status:complete
-
-Files Processed: 9
-
-Number of Files: 9
- */
-export interface IAnalysis{
-  analysisType: string;
-  repository: string;
-  sessionId: string;
-}
-
 export interface IRepoAnalysis {
   message: IAnalysisMessage;
   sources: TRepoSource[];
@@ -48,22 +27,20 @@ export interface IAnalysisMessage {
 }
 
 type TRepoSource = {
-   repository: string,
-    remote: string,
-    branch: string,
-      filepath: string,
-      linestart: number|null,
-      lineend: number|null,
-  summary: string,
-      distance:number,
-}
-
+  repository: string;
+  remote: string;
+  branch: string;
+  filepath: string;
+  linestart: number | null;
+  lineend: number | null;
+  summary: string;
+  distance: number;
+};
 
 export interface IFunction {
   functionName: string;
   complexity: number;
   funcNumOfLines: number;
-
 }
 
 export interface IFile {
@@ -83,7 +60,3 @@ export interface IAnalysisData {
   TotalComplexity: number;
 }
 
-export interface IFileAnalysis {
-  filePath: string;
-  Functions: IFunction[];
-}

@@ -7,11 +7,9 @@ import {
   Typography,
   Box,
 } from '@mui/material';
-// import { flattenedData } from "../utils/helpers";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { IRepoAnalysis } from '../utils/interfaces';
-import AnalysisVisualization from './AnalysisVisualization';
-import SelectionPanel from './SelectionPanel';
+import CirclePackingGraph from './CirclePackingGraph';
 
 
 type TDetailProps = {
@@ -30,11 +28,6 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
 
   return (
     <Accordion
-      sx={{
-        height: expanded ? 'calc(100vh - 200px)' : 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
       expanded={expanded}
       onChange={onToggle}
     >
@@ -43,25 +36,36 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
       </AccordionSummary>
       <AccordionDetails
         sx={{
-          padding: 0,
-          height: 'calc(100vh - 64px)',
+          height: 'calc(100vh - 48px)',
           display: 'flex',
           flexDirection: 'column',
-          flexGrow: 1,
+          overflow: 'hidden',
         }}
       >
-        <Grid container sx={{ height: '100%' }}>
-          {repoAnalysis && repoAnalysis.message.Analysis && analysis ? (
-            <Box sx={{ flexGrow: 1, display: 'flex' }}>
-              <AnalysisVisualization data={analysis} />
-            </Box>
-          ) : (
-            <Typography>No data available for heatmap</Typography>
-          )}
+        <Grid
+          container
+          sx={{
+            height: '100%', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+          spacing={2}
+        >
+          <Grid
+            item
+            xs={10}
+            sx={{ display: 'flex', height: '100%', overflow: 'hidden' }}
+          >
+            {repoAnalysis && repoAnalysis.message.Analysis && analysis ? (
+              <CirclePackingGraph data={analysis} />
+            ) : (
+              <Typography>No data available for heatmap</Typography>
+            )}
+          </Grid>
           {endMessage && (
-          <Typography variant='body2' color='textSecondary'>
-            {endMessage}
-          </Typography>
+            <Grid item xs={2}>
+              <Typography variant='body2' color='textSecondary'>
+                {endMessage}
+              </Typography>
+            </Grid>
           )}
         </Grid>
       </AccordionDetails>

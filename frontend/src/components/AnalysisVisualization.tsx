@@ -17,8 +17,14 @@ export default function AnalysisVisualization({ data }:AnalysisVisualizationProp
 
   return (
     <Grid container style={{ height: '100%', width: '100%' }}>
-      <Grid item xs={12} sx={{ height: '100%', width: '100%' }}>
-        <CirclePackingGraph data={data} onNodeClick={handleNodeClick} />
+      <Grid
+        item
+        xs={12}
+        sx={{
+          height: '100%', width: '100%', margin: '20px 20px', padding: '20px 20px',
+        }}
+      >
+        <CirclePackingGraph data={data} />
       </Grid>
     </Grid>
 

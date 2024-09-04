@@ -16,11 +16,6 @@ interface AnalysisMessage {
 export interface IAnalysisMessages {
   'cyclomatic-complexity': AnalysisMessage;
   'code-duplication': AnalysisMessage;
-  'inheritance-depth': AnalysisMessage;
-  refactoring: AnalysisMessage;
-  'code-coverage': AnalysisMessage;
-  'sqale-rating': AnalysisMessage;
-  'bug-count': AnalysisMessage;
 }
 
 export const analysisMessages: IAnalysisMessages = {
@@ -34,7 +29,7 @@ export const analysisMessages: IAnalysisMessages = {
       The calculated cyclomatic complexity.Provide results for each function or method separately and then an overall complexity score for the entire repository.
       Additionally, return the data in a structured JSON format. use the following stucture:
       {
-        "Folders": {
+        "Folders": [
           "Folder1": {
             "numOfFiles": numOfFiles,
             "Files": {
@@ -59,7 +54,7 @@ export const analysisMessages: IAnalysisMessages = {
             },
             "Folder2":{...},
             ...
-  },
+  ],
         "TotalComplexity": 60
       }
     `,
@@ -106,41 +101,10 @@ export const analysisMessages: IAnalysisMessages = {
         "DuplicationPercentage": 7.5
       }`,
     role: 'test',
-  },
-  'inheritance-depth': {
-    id: 'inheritance-depth-id',
-    content:
-      'Shows Inheritance Depth: For object-oriented projects, display the depth of inheritance hierarchies.',
-    role: 'test',
-  },
-  refactoring: {
-    id: 'refactoring-id',
-    content:
-      'Recommends Refactoring: Based on the metrics collected, suggest areas where refactoring could reduce complexity and technical debt.',
-    role: 'test',
-  },
-  'code-coverage': {
-    id: 'code-coverage-id',
-    content:
-      'Code coverage: Amount of code covered by unit tests. This is a source of technical debt if not covered well.',
-    role: 'test',
-  },
-  'sqale-rating': {
-    id: 'sqale-rating-id',
-    content:
-      'SQALE-rating: Broad evaluation of software quality. The scale goes from A to E, with A being the highest quality.',
-    role: 'test',
-  },
-  'bug-count': {
-    id: 'bug-count-id',
-    content:
-      'Bug count: Number of bugs, indicating the quality of the software and the impact of technical debt.',
-    role: 'test',
-  },
+  }
 };
 
 export function getAnalysisMessage(analysisType: keyof IAnalysisMessages) {
   const message = analysisMessages[analysisType];
-  console.log('MESSAGE', message);
   return message;
 }

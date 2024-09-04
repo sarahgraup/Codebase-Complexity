@@ -21,14 +21,6 @@ function App() {
   const [analysisStatus, setAnalysisStatus] = useState<{
     [key: string]: boolean;
   }>({});
-  useEffect(() => {
-    // Use mock data in development mode
-    if (process.env.NODE_ENV === 'development') {
-      setRepositories([mockRepoInfo]);
-      setRepoAnalysis(mockResult);
-      setAnalysisStatus({ [mockRepoInfo.repository]: true });
-    }
-  }, []);
 
   const handleAddRepo = async (repoInput: IRepoInput) => {
     setConfirmDisable(true);
@@ -95,7 +87,7 @@ function App() {
           alignItems='flex-end'
           justifyContent='space-between'
         >
-          <Button variant='outlined' onClick={handleClick} sx={{ p: 2 }}>
+          <Button variant='outlined' onClick={handleClick} sx={{ p: 2, m: 2 }}>
             Enter New Repository
           </Button>
         </Grid>
@@ -110,7 +102,7 @@ function App() {
         {repositories.length > 0 ? (
           <Grid container>
             {repositories.map((repo) => (
-              <Grid item xs={12} key={repo.sha}>
+              <Grid item xs={12} key={repo.sha} sx={{ m: 2 }}>
                 <RepositoryCard
                   repositoryInfo={repo}
                   handleCreateAnalysis={handleCreateAnalysis}
@@ -121,7 +113,7 @@ function App() {
             ))}
           </Grid>
         ) : (
-          <Typography variant='h6' color='textSecondary'>
+          <Typography variant='h5' color='textSecondary' m={2}>
             No repositories tracked yet.
           </Typography>
         )}
