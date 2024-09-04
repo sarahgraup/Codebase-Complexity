@@ -101,7 +101,7 @@ export const analysisMessages: IAnalysisMessages = {
         "DuplicationPercentage": 7.5
       }`,
     role: 'test',
-  }
+  },
 };
 
 export function getAnalysisMessage(analysisType: keyof IAnalysisMessages) {

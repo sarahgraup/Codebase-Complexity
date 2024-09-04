@@ -3,12 +3,10 @@ import './App.css';
 import { Button, Grid, Typography } from '@mui/material';
 import Header from './components/Header';
 import RepositoryInput from './components/RepositoryInput';
-// import Visualization from './components/Visualization';
 import { IRepoInput, IRepositoryInfo, IRepoAnalysis } from './utils/interfaces';
 import { trackRepository, analyzeRepository } from './Api/api';
 import RepositoryCard from './components/RepositoryCard';
 import { extractJsonFromMessage } from './utils/helpers';
-import { mockRepoInfo, mockResult } from './utils/mockdata';
 
 
 function App() {
