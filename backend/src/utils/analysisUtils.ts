@@ -24,8 +24,8 @@ export interface IAnalysisMessages {
 }
 
 export const analysisMessages: IAnalysisMessages = {
-  "cyclomatic-complexity": {
-    id: "cyclomatic-complexity-id",
+  'cyclomatic-complexity': {
+    id: 'cyclomatic-complexity-id',
     content: `Calculate the cyclomatic complexity of the given code repository. 
       Represent the source code as a Control Flow Graph (CFG) and use the basic cyclomatic complexity formula:
       Cyclomatic Complexity = E - N + 2P, where: E is the number of edges (control flow paths),N is the number of nodes (basic blocks),
@@ -63,10 +63,10 @@ export const analysisMessages: IAnalysisMessages = {
         "TotalComplexity": 60
       }
     `,
-    role: "test",
+    role: 'test',
   },
-  "code-duplication": {
-    id: "code-duplication-id",
+  'code-duplication': {
+    id: 'code-duplication-id',
     content: `Please analyze the given code repository for code duplication. 
     Identify and report on instances where the same or similar code appears in different places within the repository.
      Use an appropriate similarity threshold (e.g., 90%) to detect both exact duplicates and near-duplicates.
@@ -105,43 +105,42 @@ export const analysisMessages: IAnalysisMessages = {
         "TotalLinesOfCode": 2000,
         "DuplicationPercentage": 7.5
       }`,
-    role: "test",
+    role: 'test',
   },
-  "inheritance-depth": {
-    id: "inheritance-depth-id",
+  'inheritance-depth': {
+    id: 'inheritance-depth-id',
     content:
-      "Shows Inheritance Depth: For object-oriented projects, display the depth of inheritance hierarchies.",
-    role: "test",
+      'Shows Inheritance Depth: For object-oriented projects, display the depth of inheritance hierarchies.',
+    role: 'test',
   },
   refactoring: {
-    id: "refactoring-id",
+    id: 'refactoring-id',
     content:
-      "Recommends Refactoring: Based on the metrics collected, suggest areas where refactoring could reduce complexity and technical debt.",
-    role: "test",
+      'Recommends Refactoring: Based on the metrics collected, suggest areas where refactoring could reduce complexity and technical debt.',
+    role: 'test',
   },
-  "code-coverage": {
-    id: "code-coverage-id",
+  'code-coverage': {
+    id: 'code-coverage-id',
     content:
-      "Code coverage: Amount of code covered by unit tests. This is a source of technical debt if not covered well.",
-    role: "test",
+      'Code coverage: Amount of code covered by unit tests. This is a source of technical debt if not covered well.',
+    role: 'test',
   },
-  "sqale-rating": {
-    id: "sqale-rating-id",
+  'sqale-rating': {
+    id: 'sqale-rating-id',
     content:
-      "SQALE-rating: Broad evaluation of software quality. The scale goes from A to E, with A being the highest quality.",
-    role: "test",
+      'SQALE-rating: Broad evaluation of software quality. The scale goes from A to E, with A being the highest quality.',
+    role: 'test',
   },
-  "bug-count": {
-    id: "bug-count-id",
+  'bug-count': {
+    id: 'bug-count-id',
     content:
-      "Bug count: Number of bugs, indicating the quality of the software and the impact of technical debt.",
-    role: "test",
+      'Bug count: Number of bugs, indicating the quality of the software and the impact of technical debt.',
+    role: 'test',
   },
 };
 
 export function getAnalysisMessage(analysisType: keyof IAnalysisMessages) {
   const message = analysisMessages[analysisType];
-  console.log("MESSAGE", message);
+  console.log('MESSAGE', message);
   return message;
 }
-

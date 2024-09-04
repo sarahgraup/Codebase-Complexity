@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Grid,FormControl, TextField, Dialog,
+  Grid, FormControl, TextField, Dialog,
 } from '@mui/material';
-import Button from '@mui/material/Button';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IRepoInput } from '../utils/interfaces';
@@ -22,13 +20,6 @@ export default function RepositoryInput({
   isOpen, onClose, onConfirm, confirmDisable,
 }:TInputProps) {
   const [repo, setRepo] = useState<IRepoInput>({ remote: '', repository: '', branch: '' });
-  const [isTracking, setisTracking] = useState(false);
-
-
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    onClose();
-  };
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;

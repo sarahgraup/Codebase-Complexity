@@ -7,7 +7,7 @@ const apiClient = axios.create({
   timeout: 300000,
   headers: {
     Authorization: `Bearer ${config.API_KEY}`,
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 

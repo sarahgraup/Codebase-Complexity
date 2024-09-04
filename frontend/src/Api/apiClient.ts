@@ -1,12 +1,13 @@
 import axios from 'axios';
 
+
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 const apiClient = axios.create({
   baseURL: `${BASE_URL}/apiRoutes`,
   timeout: 300000,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 

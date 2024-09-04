@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import RepositoryInput from './components/RepositoryInput';
 // import Visualization from './components/Visualization';
 import { IRepoInput, IRepositoryInfo, IRepoAnalysis } from './utils/interfaces';
 import { Button, Grid, Typography } from '@mui/material';
-import { trackRepository, analyzeRepository, fetchRepositoryInfo } from './Api/api';
+import { trackRepository, analyzeRepository} from './Api/api';
 import RepositoryCard from './components/RepositoryCard';
 import { extractJsonFromMessage } from './utils/helpers';
 import { mockRepoInfo, mockResult } from './utils/mockdata';
@@ -24,7 +23,7 @@ function App() {
   }>({});
   useEffect(() => {
     // Use mock data in development mode
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === 'development') {
       setRepositories([mockRepoInfo]);
       setRepoAnalysis(mockResult);
       setAnalysisStatus({ [mockRepoInfo.repository]: true });
@@ -37,9 +36,9 @@ function App() {
       const result = await trackRepository(
         repoInput.remote,
         repoInput.repository,
-        repoInput.branch
+        repoInput.branch,
       );
-      if (result && result.status==='completed') {
+      if (result && result.status === 'completed') {
         setRepoInfo(result);
         setRepositories((prevRepos) => [...prevRepos, result]);
         setModalOpen(false);
@@ -65,17 +64,15 @@ function App() {
         setRepoAnalysis(result);
         setAnalysisStatus((prevStatus) => ({
           ...prevStatus,
-          [repoInput.repository]: true, 
+          [repoInput.repository]: true,
         }));
       }
-
-    } catch (error) {
+    }
+    catch (error) {
       console.error('failed', error);
-      
     }
     setDisable(false);
-    
-  }
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -93,12 +90,12 @@ function App() {
         <Grid
           item
           xs={12}
-          display="flex"
-          flexDirection="column"
-          alignItems="flex-end"
-          justifyContent="space-between"
+          display='flex'
+          flexDirection='column'
+          alignItems='flex-end'
+          justifyContent='space-between'
         >
-          <Button variant="outlined" onClick={handleClick} sx={{ p: 2 }}>
+          <Button variant='outlined' onClick={handleClick} sx={{ p: 2 }}>
             Enter New Repository
           </Button>
         </Grid>
@@ -106,25 +103,27 @@ function App() {
           <RepositoryInput
             isOpen={modalOpen}
             onClose={handleClose}
-            onConfirm={(repoInput: IRepoInput) =>
-              handleAddRepo(repoInput)
-            }
+            onConfirm={(repoInput: IRepoInput) => handleAddRepo(repoInput)}
             confirmDisable={confirmDisable}
           />
         )}
-          {repositories.length > 0 ? (
-        <Grid container >
-          {repositories.map((repo) => (
-            <Grid item xs={12}  key={repo.sha}>
-              <RepositoryCard repositoryInfo={repo} handleCreateAnalysis={handleCreateAnalysis} disable={disable} repoAnalysis={repoAnalysis} />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <Typography variant="h6" color="textSecondary">
-          No repositories tracked yet.
-        </Typography>
-      )}
+        {repositories.length > 0 ? (
+          <Grid container>
+            {repositories.map((repo) => (
+              <Grid item xs={12} key={repo.sha}>
+                <RepositoryCard
+                  repositoryInfo={repo}
+                  handleCreateAnalysis={handleCreateAnalysis}
+                  disable={disable}
+                  repoAnalysis={repoAnalysis} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Typography variant='h6' color='textSecondary'>
+            No repositories tracked yet.
+          </Typography>
+        )}
       </Grid>
     </React.StrictMode>
   );

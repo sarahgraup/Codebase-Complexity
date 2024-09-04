@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Card,
@@ -8,10 +8,12 @@ import {
   ListItem,
   ListItemText,
   Collapse,
-} from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import { IFunction, IFile, IAnalysisData, IFolder } from "../utils/interfaces";
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import {
+  IFunction, IFile, IAnalysisData, IFolder,
+} from '../utils/interfaces';
 
 
 interface SelectionPanelProps {
@@ -31,77 +33,69 @@ const SelectionPanel: React.FC<SelectionPanelProps> = ({
     setOpen((prevOpen) => ({ ...prevOpen, [path]: !prevOpen[path] }));
   };
 
-  const renderFolders = () => {
-    return Object.entries(data.Folders).map(([folderName, folder], index) => {
-      return (
-        <React.Fragment key={index}>
-          <ListItem button onClick={() => handleClick(folderName)}>
-            <ListItemText
-              primary={folderName}
-              secondary={`Files: ${folder.numOfFiles}`}
-            />
-            {open[folderName] ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={open[folderName]} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {renderFiles(folder.Files, folderName)}
-            </List>
-          </Collapse>
-        </React.Fragment>
-      );
-    });
-  };
+  const renderFolders = () => Object.entries(data.Folders).map(([folderName, folder], index) => (
+    <React.Fragment key={index}>
+      <ListItem button onClick={() => handleClick(folderName)}>
+        <ListItemText
+          primary={folderName}
+          secondary={`Files: ${folder.numOfFiles}`}
+        />
+        {open[folderName] ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open[folderName]} timeout='auto' unmountOnExit>
+        <List component='div' disablePadding>
+          {renderFiles(folder[Files], folderName)}
+        </List>
+      </Collapse>
+    </React.Fragment>
+  ));
 
   const renderFiles = (
     files: { [filePath: string]: IFile },
-    folderName: string
-  ) => {
-    return Object.entries(files).map(([filePath, file], index) => {
-      const fullPath = `${folderName}/${filePath}`;
-      return (
-        <React.Fragment key={index}>
-          <ListItem button sx={{ pl: 4 }} onClick={() => handleClick(fullPath)}>
-            <ListItemText
-              primary={filePath}
-              secondary={`Lines: ${file.fileNumOfLines}`}
-            />
-            {open[fullPath] ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={open[fullPath]} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {renderFunctions(file.Functions, fullPath)}
-            </List>
-          </Collapse>
-        </React.Fragment>
-      );
-    });
-  };
+    folderName: string,
+  ) => Object.entries(files).map(([filePath, file], index) => {
+    const fullPath = `${folderName}/${filePath}`;
+    return (
+      <React.Fragment key={index}>
+        <ListItem button sx={{ pl: 4 }} onClick={() => handleClick(fullPath)}>
+          <ListItemText
+            primary={filePath}
+            secondary={`Lines: ${file.fileNumOfLines}`}
+          />
+          {open[fullPath] ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={open[fullPath]} timeout='auto' unmountOnExit>
+          <List component='div' disablePadding>
+            {renderFunctions(file.Functions, fullPath)}
+          </List>
+        </Collapse>
+      </React.Fragment>
+    );
+  });
 
-  const renderFunctions = (functions: IFunction[], filePath: string) => {
-    return functions.map((func, index) => (
-      <ListItem
-        button
-        sx={{ pl: 8 }}
-        key={index}
-        onClick={() => onSelectNode({ ...func, filePath })}
-        selected={
-          selectedNode &&
-          selectedNode.functionName === func.functionName &&
-          selectedNode.filePath === filePath
+  const renderFunctions = (functions: IFunction[], filePath: string) => functions.map((func, index) => (
+    <ListItem
+      button
+      sx={{ pl: 8 }}
+      key={index}
+      onClick={() => onSelectNode({ ...func, filePath })}
+      selected={
+          selectedNode
+          && selectedNode.functionName === func.functionName
+          && selectedNode.filePath === filePath
         }
-      >
-        <ListItemText
-          primary={func.functionName}
-          secondary={`Complexity: ${func.complexity}, Line: ${func.funcNumOfLines}`}
-        />
-      </ListItem>
-    ));
-  };
+    >
+      <ListItemText
+        primary={func.functionName}
+        secondary={`Complexity: ${func.complexity}, Line: ${func.funcNumOfLines}`}
+      />
+    </ListItem>
+  ));
 
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6">Selection Panel</Typography>
+        <Typography variant='h6'>Selection Panel</Typography>
         <List>{renderFolders()}</List>
       </CardContent>
     </Card>

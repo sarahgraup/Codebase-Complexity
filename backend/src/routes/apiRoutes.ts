@@ -8,6 +8,6 @@ router.post('/track', trackRepository);
 
 router.post('/analyze', analyzeRepository);
 
-router.get("/getInfo/:repositoryId", getRepoInfo); 
+router.get('/getInfo/:repositoryId', getRepoInfo);
 
 export default router;

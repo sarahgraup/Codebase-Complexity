@@ -15,6 +15,7 @@ export interface IRepositoryInfo {
   status: string;
   analysis?: IRepoAnalysis;
 }
+
 /**
  repository:sarahgraup/sudokusolver
 Remote: github
@@ -37,7 +38,7 @@ export interface IAnalysis{
 }
 
 export interface IRepoAnalysis {
-  message:  IAnalysisMessage;
+  message: IAnalysisMessage;
   sources: TRepoSource[];
 }
 

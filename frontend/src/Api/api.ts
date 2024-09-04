@@ -29,13 +29,12 @@ export const analyzeRepository = async (
   repository: IRepoInput,
   sessionId?: string,
 ) => {
-
   try {
     const response = await apiClient.post('/analyze', {
       analysisType,
       repository,
       sessionId,
-    }, { timeout: 50000 }); 
+    }, { timeout: 50000 });
     return response.data;
   }
   catch (error: any) {
@@ -50,10 +49,11 @@ export const analyzeRepository = async (
 export const fetchRepositoryInfo = async (repositoryId: string) => {
   try {
     const response = await apiClient.get(`/getInfo/${repositoryId}`);
-    
+
     return response.data;
-  } catch (error) {
-    console.error("Error fetching repository info:", error);
+  }
+  catch (error) {
+    console.error('Error fetching repository info:', error);
     return null;
   }
 };
