@@ -94,4 +94,6 @@ A visual tool that utilizes Greptile Api to allow users to input their git repos
 - [ ] **In-depth Error Handling**: Improve error handling mechanisms for better issue identification.
 - [ ] **Comprehensive Analysis Metrics**: Add features for analyzing lines of code, cohesion and coupling, depth of inheritance, code duplication, and code coverage.
 - [ ] **Analysis Panel**: Create an analysis panel for filtering and visualizing different metrics.
+- [ ] **Mobile UI**: Modify ui for mobile compatibility.
 - [ ] **Export to PDF**: Implement functionality to export generated graphs as PDFs.
+
