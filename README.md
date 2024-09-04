@@ -1,5 +1,6 @@
 # Codebase Complexity
 
+
 ## Description
 A visual tool that utilizes Greptile Api to allow users to input their git repository and generate a heatmap of their codebase to show areas of Cyclomatic Complexity. This tool is valuable for project managers and tech leads to identify code hotspots that may require refactoring or additional testing.
 
@@ -94,4 +95,6 @@ A visual tool that utilizes Greptile Api to allow users to input their git repos
 - [ ] **In-depth Error Handling**: Improve error handling mechanisms for better issue identification.
 - [ ] **Comprehensive Analysis Metrics**: Add features for analyzing lines of code, cohesion and coupling, depth of inheritance, code duplication, and code coverage.
 - [ ] **Analysis Panel**: Create an analysis panel for filtering and visualizing different metrics.
+- [ ] **Mobile UI**: Modify ui for mobile compatibility.
 - [ ] **Export to PDF**: Implement functionality to export generated graphs as PDFs.
+
