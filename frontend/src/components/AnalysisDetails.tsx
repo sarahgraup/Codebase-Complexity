@@ -51,7 +51,6 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
         }}
       >
         <Grid container sx={{ height: '100%' }}>
-          {/* <Grid item xs={12} sx={{ height: "100%" }}> */}
           {repoAnalysis && repoAnalysis.message.Analysis && analysis ? (
             <Box sx={{ flexGrow: 1, display: 'flex' }}>
               <AnalysisVisualization data={analysis} />
@@ -59,18 +58,11 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
           ) : (
             <Typography>No data available for heatmap</Typography>
           )}
-          {/* <Grid item xs={4} sx={{ height: "100%" }}> */}
-
-          {/* <SelectionPanel data={data} onSelectNode={handleNodeClick}
-          selectedNode={selectedNode} /> */}
-
-          {/* </Grid> */}
           {endMessage && (
           <Typography variant='body2' color='textSecondary'>
             {endMessage}
           </Typography>
           )}
-          {/* </Grid> */}
         </Grid>
       </AccordionDetails>
     </Accordion>

@@ -145,6 +145,14 @@ export default function CirclePackingGraph({
     ) => {
       focus = d;
       const duration = event.altKey ? 7500 : 750;
+      const transition = svg
+        .transition()
+        .duration(duration)
+        .tween('zoom', () => {
+          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+          return (t) => zoomTo(i(t));
+        });
+
 
       label
         .filter(function (d) {
