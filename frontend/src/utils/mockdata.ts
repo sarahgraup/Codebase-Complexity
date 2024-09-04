@@ -1,5 +1,5 @@
 import { IRepositoryInfo, IRepoAnalysis } from './interfaces';
-
+/* eslint-disable quotes */
 
 export const mockRepoInfo: IRepositoryInfo = {
   repository: 'sarahgraup/sudokusolver',

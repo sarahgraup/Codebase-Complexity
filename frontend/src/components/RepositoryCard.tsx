@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, CardActions, Box,
+import {
+  Card, CardContent, Typography, CardActions, Box,
 } from '@mui/material';
 import { IRepoAnalysis, IRepoInput, IRepositoryInfo } from '../utils/interfaces';
 import SpinnerButton from '../common/SpinnerButton';

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Button, Grid, Typography } from '@mui/material';
 import Header from './components/Header';
 import RepositoryInput from './components/RepositoryInput';
 // import Visualization from './components/Visualization';
 import { IRepoInput, IRepositoryInfo, IRepoAnalysis } from './utils/interfaces';
-import { Button, Grid, Typography } from '@mui/material';
-import { trackRepository, analyzeRepository} from './Api/api';
+import { trackRepository, analyzeRepository } from './Api/api';
 import RepositoryCard from './components/RepositoryCard';
 import { extractJsonFromMessage } from './utils/helpers';
 import { mockRepoInfo, mockResult } from './utils/mockdata';
@@ -115,7 +115,8 @@ function App() {
                   repositoryInfo={repo}
                   handleCreateAnalysis={handleCreateAnalysis}
                   disable={disable}
-                  repoAnalysis={repoAnalysis} />
+                  repoAnalysis={repoAnalysis}
+                />
               </Grid>
             ))}
           </Grid>

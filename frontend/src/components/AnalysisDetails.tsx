@@ -52,7 +52,7 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
       >
         <Grid container sx={{ height: '100%' }}>
           {/* <Grid item xs={12} sx={{ height: "100%" }}> */}
-          {repoAnalysis && repoAnalysis.message.Analysis && analysis? (
+          {repoAnalysis && repoAnalysis.message.Analysis && analysis ? (
             <Box sx={{ flexGrow: 1, display: 'flex' }}>
               <AnalysisVisualization data={analysis} />
             </Box>
@@ -61,7 +61,7 @@ export default function AnalysisDetails({ repoAnalysis, expanded, onToggle }: TD
           )}
           {/* <Grid item xs={4} sx={{ height: "100%" }}> */}
 
-          {/* <SelectionPanel data={data} onSelectNode={handleNodeClick} 
+          {/* <SelectionPanel data={data} onSelectNode={handleNodeClick}
           selectedNode={selectedNode} /> */}
 
           {/* </Grid> */}
